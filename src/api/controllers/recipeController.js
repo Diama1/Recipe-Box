@@ -27,7 +27,6 @@ class Recipes {
           name, uploadedImage, ingredient, direction
         };
         
-
         const response = await Recipe.findAll({
           where: {
             name
@@ -46,7 +45,37 @@ class Recipes {
             message: 'Recipe created successfully'
           });
         }
+        res.status(409).json({
+          Error: 'Recipe with that title exixt'
+        })
       }
+
+      /**
+   *
+   * @param {Object} req - Request object
+   * @param {Object} res - Response object
+   * @returns {Object} - Response object
+   */
+      static async getAllRecipe(req, res) {
+        const allRecipes = await Recipe.findAll();
+        if (!allRecipes[0]) return res.status(200).send({ message: 'Whoops! No Recipe found!' });
+        res.status(200).send({
+          Recipes: allRecipes
+        });
+      }
+
+      static async getOneRecipe(req, res) {
+        const { id } = req.params;
+        const recipe = await Recipe.findOne({
+          where: {
+            id
+          }
+        });
+        res.status(200).send({
+          recipe
+        });
+      }
+
 }
 
 export default Recipes;
