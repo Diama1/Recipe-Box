@@ -9,7 +9,7 @@
     "test:dev": " export NODE_ENV=test & nyc --reporter=html --reporter=text mocha ./test/*.js --exit --require @babel/register --require regenerator-runtime",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "build": "rm -rf ./build && babel -d ./build ./src -s",
-    "server": " node build/index.js",
+    "start": " node build/index.js",
     "test": "export NODE_ENV=test &&  yarn run migrate:reset && nyc --require @babel/register --reporter=html --reporter=text mocha ./test/*.js  --timeout 20000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "migrate:reset": "sequelize db:drop && sequelize db:create && sequelize db:migrate"

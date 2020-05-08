@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => res.json({ message: 'Welcome To Portfolio' }));
+app.get('/', (req, res) => res.json({ message: 'Welcome To Recipe Box' }));
 app.use('/api', api);
 
 app.listen(port, () => {
